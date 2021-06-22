@@ -1,0 +1,60 @@
+swagger: "2.0"
+info:
+  description: "Definição de mensagem para envio de notificações de eventos de negócio da CCEE."
+  version: "1.0.0"
+  title: "Webhook - Plataforma de Integração"
+  termsOfService: "http://www.ccee.org.br"
+  contact:
+    email: "contato@ccee.org.br"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "endereco.agente"
+basePath: "/"
+schemes:
+- "https"
+- "http"
+paths:
+  /:
+    post:
+      summary: "Mensagem de envio de notificação"
+      description: ""
+      operationId: "enviarNotificacao"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Mensagem a ser enviada pela CCEE"
+        required: true
+        schema:
+          $ref: "#/definitions/Mensagem"
+      responses:
+        "201":
+          description: "Mensagem aceita"
+definitions:
+  Mensagem:
+    type: "object"
+    properties:
+      eventoNotificacao:
+        type: "string"
+        description: "Evento de notificação a ser enviado"
+      metadados:
+        type: "array"
+        items:
+          $ref: "#/definitions/Metadado"
+      transactionId:
+        type: "string"
+        description: "Id único da transação em formato UUID"
+  Metadado:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+      valor:
+        type: "string"
+externalDocs:
+  description: "Plataforma de Integração - CCEE"
+  url: "https://www.ccee.org.br/portal/faces/oquefazemos_menu_lateral/plataforma_integracao?_adf.ctrl-state=uv8dbgb8_5&_afrLoop=856039328268422"
