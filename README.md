@@ -15,7 +15,7 @@ Entre os benefícios para os agentes que utilizam a plataforma estão:
 
 Agentes e consultorias que tenham representação total dos seus clientes aderidos à CCEE.
 
-> Para saber mais sobre a Plataforma de Integração, acesse [clique aqui](../postman-collections)
+> Para saber mais sobre a Plataforma de Integração, acesse [clique aqui](https://www.ccee.org.br/portal/faces/oquefazemos_menu_lateral/plataforma_integracao?_adf.ctrl-state=17lo3u9ein_1&_afrLoop=5757508758487)
 
 ### Como aderir
 
