@@ -84,6 +84,18 @@ Implemente uma interface RestAPI que irá receber as notificações de um ou mai
 - Ao receber a notificação, deve-se retornar o HTTP response code = 201 para a CCEE
 - Caso outro código seja retornado, a CCEE irá reenviar a notificação a cada 5 minutos, por um prazo de 24 horas ou até que a interface do participante de mercado retorne o código 201 (o que acontece primeiro)
 
+#### Lista de metadados
+
+Cada mensagem de notificação enviada para a URL destino contém uma lista de metadados relacionadas ao evento de negócio notificado. Os valores dessa lista podem ser usados para que o destinatário tome decisões de negócio relacionadas ao evento.
+
+| Nome do metadado 	| Descrição | Exemplos de valores |
+| ---	| ---	| ---	|
+| ID_CONTRATO 		| Código único identificador do contrato gerado e armzenado no CliqCCEE, relacionado à notificação que está sendo enviada. Este código pode ser utilizado para consulta das informações do próprio contrato ou de seus respectivos montantes de energia. | 123456   |
+| DATA_ORIGEM_EVENTO | Data do momento em que o evento de negócio aconteceu, quando a geração da notificação é feita pela aplicação responsável pela informação e enviada para ser posteriormente notificada aos agentes. É a data em que o contrato foi registrado, ou que o montante de energia foi ajustado, por exemplo. Importante ressaltar que este valor não representa a data do envio da notificação.                | 2021-05-11T05:30:00      |
+| AMBIENTE_CONTRATACAO | Define o ambiente de contratação onde o contrato foi registrado. .                | LIVRE      |
+
+#### Exemplos
+
 Os exemplos abaixo contêm sugestões de implantação da interface RestAPI no servidor do participante de mercado
 
 - [Swagger](./exemplos/webhook.json) 
@@ -95,19 +107,15 @@ Os exemplos abaixo contêm sugestões de implantação da interface RestAPI no s
 	"metadados": [
 		{
 			"nome": "ID_CONTRATO",
-			"valor": "1234"
+			"valor": "1692149"
 		},
 		{
 			"nome": "DATA_ORIGEM_EVENTO",
-			"valor": "2021-05-11T05:30:00.000Z"
-		},
-		{
-			"nome": "MES_REFERENCIA",
-			"valor": "null"
+			"valor": "2021-06-23T19:07:58.765Z"
 		},
 		{
 			"nome": "AMBIENTE_CONTRATACAO",
-			"valor": "ACL"
+			"valor": "LIVRE"
 		}
 	],
 	"transactionId": "12345678-1234-1234-1234-123465789012"
@@ -165,19 +173,15 @@ Os exemplos abaixo contêm sugestões de implantação da interface RestAPI no s
 	"metadados": [
 		{
 			"nome": "ID_CONTRATO",
-			"valor": "1234"
+			"valor": "1692149"
 		},
 		{
 			"nome": "DATA_ORIGEM_EVENTO",
-			"valor": "2021-05-11T05:30:00.000Z"
-		},
-		{
-			"nome": "MES_REFERENCIA",
-			"valor": "null"
+			"valor": "2021-06-23T19:07:58.765Z"
 		},
 		{
 			"nome": "AMBIENTE_CONTRATACAO",
-			"valor": "ACL"
+			"valor": "LIVRE"
 		}
 	],
 	"transactionId": "12345678-1234-1234-1234-123465789012"
