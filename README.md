@@ -44,6 +44,7 @@ O webhook da Plataforma de Integração é uma funcionalidade que envia notifica
 	> **Exemplos**
 	>  - CONTRATO
 	>  - MONTANTE_ENERGIA
+ 	>  - MEDIDA_FINAL
 
 - **Evento de negócio** - Objeto que indica uma ação que já se encontra realizada em relação a uma entidade. Preferencialmente, deve-se utilizar um **verbo no particípio**, regular ou irregular, sem espaços, acentuações ou caracteres especiais, seguindo o conceito de enumeration.
 
@@ -52,6 +53,10 @@ O webhook da Plataforma de Integração é uma funcionalidade que envia notifica
 	> - VALIDADO
 	> - FINALIZADO
 	> - AJUSTADO
+ 	> - AJUSTADA
+	> - AJUSTADA_RECONTABILIZACAO
+	> - ESTIMADA
+ 	> - CANCELADO
 
 - **Código do evento de notificação** - Identifica a relação "*entidade*" + "*evento de negócio*", e será o código utilizado pelo agente para cadastro das preferências, recebimento das notificações e consulta dos resultados. O valor é formado pelo **nome da entidade** e pelo **nome do evento de negócio**, separados por um ponto (".").
 
@@ -59,6 +64,9 @@ O webhook da Plataforma de Integração é uma funcionalidade que envia notifica
 	> - CONTRATO.REGISTRADO
 	> - CONTRATO.VALIDADO
 	> - MONTANTE_ENERGIA.AJUSTADO
+ 	> - MEDIDA_FINAL.AJUSTADA_RECONTABILIZACAO
+	> - MEDIDA_FINAL.AJUSTADA
+ 	> - MEDIDA_FINAL.ESTIMADA
 
 - **Endereço de destino** - Endereço para o qual o agente deseja que as notificações sejam enviadas. Esta informação é armazenada no AVISOS.
 
@@ -168,6 +176,7 @@ Os exemplos abaixo contêm sugestões de implantação da interface RestAPI no s
 - [YAML](./exemplos/webhook.yaml) 
 
 ```json
+Exemplo de Json de Contrato
 {
 	"eventoNotificacao": "CONTRATO.REGISTRADO",
 	"metadados": [
@@ -182,6 +191,50 @@ Os exemplos abaixo contêm sugestões de implantação da interface RestAPI no s
 		{
 			"nome": "AMBIENTE_CONTRATACAO",
 			"valor": "LIVRE"
+		}
+	],
+	"transactionId": "12345678-1234-1234-1234-123465789012"
+}
+```
+Exemplo de Json de Medição
+{
+	"eventoNotificacao": "MEDIDA_FINAL.AJUSTADA",
+	"metadados": [
+		{
+			"nome": "CODIGO_PONTO",
+			"valor": "PONTOXPTO-001"
+		},
+		{
+			"nome": "DATA_AJUSTE",
+			"valor": "2023-01-04T19:48:27.097Z"
+		},
+		{
+			"nome": "MÊS_REFEÊNCIA",
+			"valor": "2022-12"
+		},
+		{
+			"nome": "MONTANTE_AJUSTADA_GERACAO_ATIVA_LIQUIDA",
+			"valor": "0.001 KWh"
+		},
+		{
+			"nome": "MONTANTE_AJUSTADA_GERACAO_ATIVA_BRUTA",
+			"valor": "0.00 KWh"
+		},
+		{
+			"nome": "MONTANTE_AJUSTADA_CONSUMO_ATIVO_LIQUIDA",
+			"valor": "0.00 KWh"
+		},
+		{
+			"nome": "MONTANTE_AJUSTADA_CONSUMO_ATIVO_BRUTA",
+			"valor": "0.00 KWh"
+		},
+		{
+			"nome": "QUANTIDADE_HORAS_LIQUIDA",
+			"valor": "2"
+		},
+		{
+			"nome": "QUANTIDADE_HORAS_BRUTA",
+			"valor": "0"
 		}
 	],
 	"transactionId": "12345678-1234-1234-1234-123465789012"
