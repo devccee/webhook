@@ -196,6 +196,7 @@ Exemplo de Json de Contrato
 	"transactionId": "12345678-1234-1234-1234-123465789012"
 }
 ```
+```json
 Exemplo de Json de Medição
 {
 	"eventoNotificacao": "MEDIDA_FINAL.AJUSTADA",
